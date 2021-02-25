@@ -16,7 +16,7 @@ Renderer::Renderer(const std::size_t screen_width,
   }
 
   // Create Window
-  sdl_window = SDL_CreateWindow("Snake Game", SDL_WINDOWPOS_CENTERED,
+  sdl_window = SDL_CreateWindow("Sea Snake Game", SDL_WINDOWPOS_CENTERED,
                                 SDL_WINDOWPOS_CENTERED, screen_width,
                                 screen_height, SDL_WINDOW_SHOWN);
 
@@ -44,7 +44,7 @@ void Renderer::Render(Snake const snake, SDL_Point const &food) {
   block.h = screen_height / grid_height;
 
   // Clear screen
-  SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
+  SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0xCE, 0xD1, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
   // Render food
