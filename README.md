@@ -29,3 +29,22 @@ In this project, you can build your own C++ application or extend this Snake gam
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
 4. Run it: `./SnakeGame`.
+
+## Rubric points implemented in this project
+
+1. The project read data from a file and process the data, or the program writes data to a file
+  * Save/load feature
+2. The project accepts user input and processes the input
+  * Number of frogs, in essence difficulty level, is queried from the user
+3. The project uses Object Oriented Programming techniques
+  * Both snake and frogs are objects
+4. Classes use appropriate access specifiers for class members
+5. Class constructors utilize member initialization list
+  * Both snake and frogs utilize member initialization lists
+6. Classes encapsulate behavior
+7. Classes follow and appropriate inheritance hierarchy
+  * Snake and Frog classes both inherit from common Chordate class
+8. The project uses scope / Resource Aquisition is initialization (RAII) where appropriate
+   * Frogs 
+9. The project uses smart pointers instead of raw pointers
+  * Frogs are accessed using smart pointers
