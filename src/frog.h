@@ -1,14 +1,14 @@
-#ifndef SNAKE_H
-#define SNAKE_H
+#ifndef FROG_H
+#define FROG_H
 
 #include <vector>
 #include "SDL.h"
 
-class Snake {
+class Frog {
  public:
   enum class Direction { kUp, kDown, kLeft, kRight };
 
-  Snake(int grid_width, int grid_height)
+  Frog(int grid_width, int grid_height)
       : grid_width(grid_width),
         grid_height(grid_height),
         head_x(grid_width / 2),
@@ -16,8 +16,7 @@ class Snake {
 
   void Update();
 
-  void GrowBody();
-  bool SnakeCell(int x, int y);
+  bool FrogCell(int x, int y);
 
   Direction direction = Direction::kUp;
 
@@ -30,7 +29,6 @@ class Snake {
 
  private:
   void UpdateHead();
-  void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell);
 
   bool growing{false};
   int grid_width;
