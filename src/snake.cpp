@@ -53,3 +53,5 @@ bool Snake::SnakeCell(int x, int y) {
   }
   return false;
 }
+
+int Chordate::objectCount = 0;

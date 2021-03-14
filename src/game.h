@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include <random>
+#include <vector>
+#include <memory>
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
@@ -18,7 +20,9 @@ class Game {
 
  private:
   Snake snake;
-  Frog frog;
+  //Frog frog;
+  std::vector<std::unique_ptr<Frog>> frogs;
+
   SDL_Point food;
 
   std::random_device dev;
@@ -29,6 +33,7 @@ class Game {
   int score{0};
 
   void PlaceFood();
+  void PlaceFrogs(int grid_width, int grid_height);
   void Update();
 };
 

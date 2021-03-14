@@ -2,6 +2,7 @@
 #define RENDERER_H
 
 #include <vector>
+#include <memory>
 #include "SDL.h"
 #include "snake.h"
 #include "frog.h"
@@ -12,7 +13,7 @@ class Renderer {
            const std::size_t grid_width, const std::size_t grid_height);
   ~Renderer();
 
-  void Render(Snake const snake, Frog const frog, SDL_Point const &food);
+  void Render(Snake const snake, std::vector<std::unique_ptr<Frog>>& frogs, SDL_Point const &food);
   void UpdateWindowTitle(int score, int fps);
 
  private:
