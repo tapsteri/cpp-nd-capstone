@@ -40,6 +40,11 @@ void Game::Run(Controller const &controller, Renderer &renderer,
       renderer.UpdateWindowTitle(score, frame_count);
       frame_count = 0;
       title_timestamp = frame_end;
+
+      
+
+
+
     }
 
     // If the time for this frame is too small (i.e. frame_duration is
