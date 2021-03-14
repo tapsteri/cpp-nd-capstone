@@ -2,6 +2,7 @@
 #define CHORDATE_H
 
 #include <vector>
+#include <random>
 #include "SDL.h"
 
 class Chordate {
@@ -17,6 +18,8 @@ class Chordate {
   void Update();
 
   void UpdateHead();
+
+  void UpdateDirection();
 
   Direction direction = Direction::kUp;
 

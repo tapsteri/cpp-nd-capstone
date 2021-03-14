@@ -72,7 +72,10 @@ void Game::PlaceFood() {
 }
 
 void Game::Update() {
+
   if (!snake.alive) return;
+
+  frog.Update();
 
   snake.Update();
 

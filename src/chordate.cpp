@@ -1,5 +1,6 @@
 #include "chordate.h"
 #include <cmath>
+#include <ctime>
 #include <iostream>
 
 void Chordate::Update() {
@@ -11,6 +12,28 @@ void Chordate::Update() {
   SDL_Point current_cell{
       static_cast<int>(head_x),
       static_cast<int>(head_y)};  // Capture the head's cell after updating.
+  
+  UpdateDirection();
+}
+
+void Chordate::UpdateDirection() {
+    std::mt19937 generator(int(std::time(0)));
+    std::uniform_int_distribution<int> dis(0, 6);
+   
+    switch (dis(generator)) {
+      case 0:
+        direction = Direction::kUp;
+        break;
+      case 1:
+        direction = Direction::kDown;
+        break;
+      case 2:
+        direction = Direction::kLeft;
+        break;
+      case 3:
+        direction = Direction::kRight;
+        break;
+    }
 }
 
 void Chordate::UpdateHead() {
