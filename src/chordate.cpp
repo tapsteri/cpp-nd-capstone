@@ -1,7 +1,7 @@
-#include "chordate.h"
 #include <cmath>
 #include <ctime>
 #include <iostream>
+#include "chordate.h"
 
 void Chordate::Update() {
   SDL_Point prev_cell{
@@ -16,11 +16,8 @@ void Chordate::Update() {
   UpdateDirection();
 }
 
-void Chordate::UpdateDirection() {
-    std::mt19937 generator(int(std::time(0)));
-    std::uniform_int_distribution<int> dis(0, 6);
-   
-    switch (dis(generator)) {
+void Chordate::UpdateDirection() {   
+    switch (random_generator::rand_int(0,30)) {
       case 0:
         direction = Direction::kUp;
         break;
@@ -32,6 +29,8 @@ void Chordate::UpdateDirection() {
         break;
       case 3:
         direction = Direction::kRight;
+        break;
+      default:
         break;
     }
 }

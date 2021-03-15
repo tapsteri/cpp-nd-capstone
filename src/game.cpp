@@ -73,15 +73,10 @@ void Game::PlaceFood() {
 
 void Game::PlaceFrogs(int grid_width, int grid_height) {
   int x, y;
-  while (true) {
-    x = random_w(engine);
-    y = random_h(engine);
-    // Check that the location is not occupied by a snake item before placing
-    // food.
-    if (!snake.SnakeCell(x, y)) {
-      frogs.push_back(std::make_unique<Frog>(grid_width, grid_height)); 
-      return;
-    }
+  for (int i=0; i < 11; i++) {
+
+      frogs.push_back(std::make_unique<Frog>(grid_width, grid_height));  
+  
   }
 }
 
@@ -94,8 +89,7 @@ void Game::Update() {
 
   snake.Update();
 
-
-  for(const auto& frog: frogs) {
+    for(const auto& frog: frogs) {
     frog->Update();
   }
 
@@ -111,17 +105,30 @@ void Game::Update() {
     snake.speed += 0.02;
   }
 
-  // Check if there's food over here
-  /*
-  if (frog.head_x == snake.head_x && frog.head_y == snake.head_y) {
-    score++;
-    //PlaceFood();
-    // Grow snake and increase speed.
-    snake.GrowBody();
-    snake.speed += 0.02;
-    frog.alive = false;
+  // Check if there's frog over here
+  for(const auto& frog: frogs) {
+    if (static_cast<int>(frog->head_x) == new_x && static_cast<int>(frog->head_y) == new_y) {
+      if (!frog->alive) 
+      {
+        snake.alive = false;
+      } else
+      {
+           score++;
+      //PlaceFood();
+      // Grow snake and increase speed.
+      snake.GrowBody();
+      snake.speed += 0.02;
+      frog->alive = false;
+      //frogs.clear();
+        
+      }
+
+    }
   }
-  */
+
+
+
+
 
 }
 
