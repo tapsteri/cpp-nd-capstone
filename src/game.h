@@ -35,6 +35,7 @@ class Game {
   void PlaceFood();
   void PlaceFrogs(int grid_width, int grid_height);
   void Update();
+  void RemoveDeadFrogs();
 };
 
 #endif

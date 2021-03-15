@@ -2,6 +2,7 @@
 #include <iostream>
 #include "SDL.h"
 
+
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
       engine(dev()),
@@ -26,6 +27,17 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, snake);
     Update();
+
+    RemoveDeadFrogs(); 
+/*
+    auto it = frogs.begin();
+        while(it != frogs.end()) {
+            if(!it->get()->alive)
+                it = frogs.erase(it);
+            else
+                it++;
+            }
+*/
     renderer.Render(snake, frogs, food);
 
     frame_end = SDL_GetTicks();
@@ -113,22 +125,29 @@ void Game::Update() {
         snake.alive = false;
       } else
       {
-           score++;
-      //PlaceFood();
-      // Grow snake and increase speed.
-      snake.GrowBody();
-      snake.speed += 0.02;
-      frog->alive = false;
+        score++;
+        //PlaceFood();
+         // Grow snake and increase speed.
+         snake.GrowBody();
+         snake.speed += 0.02;
+         frog->alive = false;
       //frogs.clear();
         
       }
 
     }
   }
+}
 
+void Game::RemoveDeadFrogs() { 
 
-
-
+    auto it = frogs.begin();
+        while(it != frogs.end()) {
+            if(!it->get()->alive)
+                it = frogs.erase(it);
+            else
+                it++;
+            }
 
 }
 
