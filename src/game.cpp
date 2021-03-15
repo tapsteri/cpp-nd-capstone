@@ -8,7 +8,6 @@ Game::Game(std::size_t grid_width, std::size_t grid_height)
       engine(dev()),
       random_w(0, static_cast<int>(grid_width)),
       random_h(0, static_cast<int>(grid_height)) {
-  PlaceFood();
   PlaceFrogs(grid_width, grid_height);
 }
 
@@ -29,16 +28,8 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     Update();
 
     RemoveDeadFrogs(); 
-/*
-    auto it = frogs.begin();
-        while(it != frogs.end()) {
-            if(!it->get()->alive)
-                it = frogs.erase(it);
-            else
-                it++;
-            }
-*/
-    renderer.Render(snake, frogs, food);
+
+    renderer.Render(snake, frogs);
 
     frame_end = SDL_GetTicks();
 
@@ -52,11 +43,6 @@ void Game::Run(Controller const &controller, Renderer &renderer,
       renderer.UpdateWindowTitle(score, frame_count);
       frame_count = 0;
       title_timestamp = frame_end;
-
-      
-
-
-
     }
 
     // If the time for this frame is too small (i.e. frame_duration is
@@ -68,32 +54,12 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   }
 }
 
-void Game::PlaceFood() {
-  int x, y;
-  while (true) {
-    x = random_w(engine);
-    y = random_h(engine);
-    // Check that the location is not occupied by a snake item before placing
-    // food.
-    if (!snake.SnakeCell(x, y)) {
-      food.x = x;
-      food.y = y;
-      return;
-    }
-  }
-}
-
 void Game::PlaceFrogs(int grid_width, int grid_height) {
   int x, y;
   for (int i=0; i < 11; i++) {
-
       frogs.push_back(std::make_unique<Frog>(grid_width, grid_height));  
-  
   }
 }
-
-
-
 
 void Game::Update() {
 
@@ -108,47 +74,31 @@ void Game::Update() {
   int new_x = static_cast<int>(snake.head_x);
   int new_y = static_cast<int>(snake.head_y);
 
-  // Check if there's food over here
-  if (food.x == new_x && food.y == new_y) {
-    score++;
-    PlaceFood();
-    // Grow snake and increase speed.
-    snake.GrowBody();
-    snake.speed += 0.02;
-  }
-
   // Check if there's frog over here
   for(const auto& frog: frogs) {
     if (static_cast<int>(frog->head_x) == new_x && static_cast<int>(frog->head_y) == new_y) {
-      if (!frog->alive) 
-      {
+      if (!frog->alive) {
         snake.alive = false;
-      } else
-      {
+      } else {
         score++;
-        //PlaceFood();
-         // Grow snake and increase speed.
-         snake.GrowBody();
-         snake.speed += 0.02;
-         frog->alive = false;
-      //frogs.clear();
-        
+        // Grow snake and increase speed.
+        snake.GrowBody();
+        snake.speed += 0.02;
+        frog->alive = false;        
       }
-
     }
   }
 }
 
 void Game::RemoveDeadFrogs() { 
 
-    auto it = frogs.begin();
-        while(it != frogs.end()) {
-            if(!it->get()->alive)
-                it = frogs.erase(it);
-            else
-                it++;
-            }
-
+  auto it = frogs.begin();
+    while(it != frogs.end()) {
+      if(!it->get()->alive)
+        it = frogs.erase(it);
+      else
+        it++;
+    }
 }
 
 int Game::GetScore() const { return score; }

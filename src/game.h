@@ -20,10 +20,7 @@ class Game {
 
  private:
   Snake snake;
-  //Frog frog;
   std::vector<std::unique_ptr<Frog>> frogs;
-
-  SDL_Point food;
 
   std::random_device dev;
   std::mt19937 engine;
@@ -32,7 +29,6 @@ class Game {
 
   int score{0};
 
-  void PlaceFood();
   void PlaceFrogs(int grid_width, int grid_height);
   void Update();
   void RemoveDeadFrogs();
