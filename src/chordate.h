@@ -4,6 +4,7 @@
 #include <vector>
 #include <random>
 #include <ctime>
+#include <iostream>
 #include "SDL.h"
 #include "random_generator.h"
 
@@ -18,14 +19,10 @@ class Chordate {
            std::uniform_int_distribution<int> random_w(0, static_cast<int>(grid_width));
            std::uniform_int_distribution<int> random_h(0, static_cast<int>(grid_height));
            head_x = random_w(random_generator::engine);
-           head_y = random_h(random_generator::engine);
+           head_y = random_h(random_generator::engine);  
         }
 
-  void Update();
-
   void UpdateHead();
-
-  void UpdateDirection();
 
   Direction direction = Direction::kUp;
 
@@ -34,9 +31,9 @@ class Chordate {
   bool alive{true};
   float head_x;
   float head_y;
+  bool growing{false};
 
  private:
-  bool growing{false};
   int grid_width;
   int grid_height;
 

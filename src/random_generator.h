@@ -2,7 +2,7 @@
 #define RANDOM_GENERATOR_H
 
 #include <random>
-// random number generator from Stroustrup: 
+// random number generator from Bjarne Stroustrup: 
 // http://www.stroustrup.com/C++11FAQ.html#std-random
 namespace random_generator
 {

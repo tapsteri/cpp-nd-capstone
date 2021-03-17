@@ -12,7 +12,7 @@
 
 class Game {
  public:
-  Game(std::size_t grid_width, std::size_t grid_height);
+  Game(std::size_t grid_width, std::size_t grid_height, int frogsNumber);
   void Run(Controller const &controller, Renderer &renderer,
            std::size_t target_frame_duration);
   int GetScore() const;
@@ -29,7 +29,7 @@ class Game {
 
   int score{0};
 
-  void PlaceFrogs(int grid_width, int grid_height);
+  void PlaceFrogs(int grid_width, int grid_height, int frogsNumber);
   void Update();
   void RemoveDeadFrogs();
 };

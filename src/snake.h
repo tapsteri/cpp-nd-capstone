@@ -10,18 +10,13 @@ class Snake : public Chordate {
   Snake (int grid_width, int grid_height) : Chordate (grid_width, grid_height ) {}
 
   void Update();
-
   void GrowBody();
-  bool SnakeCell(int x, int y);
 
   std::vector<SDL_Point> body;
 
  private:
+  bool SnakeCell(int x, int y);
   void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell);
-
-  bool growing{false};
-  int grid_width;
-  int grid_height;
 };
 
 #endif

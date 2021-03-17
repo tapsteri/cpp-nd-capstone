@@ -13,7 +13,7 @@ class Renderer {
            const std::size_t grid_width, const std::size_t grid_height);
   ~Renderer();
 
-  void Render(Snake const snake, std::vector<std::unique_ptr<Frog>>& frogs);
+  void Render(Snake const snake, std::vector<std::unique_ptr<Frog>> &frogs);
   void UpdateWindowTitle(int score, int fps);
 
  private:

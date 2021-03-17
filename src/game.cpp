@@ -2,13 +2,12 @@
 #include <iostream>
 #include "SDL.h"
 
-
-Game::Game(std::size_t grid_width, std::size_t grid_height)
+Game::Game(std::size_t grid_width, std::size_t grid_height, int frogsNumber)
     : snake(grid_width, grid_height),
       engine(dev()),
       random_w(0, static_cast<int>(grid_width)),
       random_h(0, static_cast<int>(grid_height)) {
-  PlaceFrogs(grid_width, grid_height);
+  PlaceFrogs(grid_width, grid_height, frogsNumber);
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer,
@@ -54,9 +53,9 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   }
 }
 
-void Game::PlaceFrogs(int grid_width, int grid_height) {
+void Game::PlaceFrogs(int grid_width, int grid_height, int frogsNumber) {
   int x, y;
-  for (int i=0; i < 11; i++) {
+  for (int i=0; i < frogsNumber; i++) {
       frogs.push_back(std::make_unique<Frog>(grid_width, grid_height));  
   }
 }

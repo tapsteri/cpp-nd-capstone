@@ -5,14 +5,17 @@
 #include "chordate.h"
 #include "SDL.h"
 
+constexpr int kFrogActivity{100};
+
 class Frog : public Chordate {
  public:
   Frog (int grid_width, int grid_height) : Chordate (grid_width, grid_height ) {}
 
+  void Update();
+
  private:
-  bool growing{false};
-  int grid_width;
-  int grid_height;
+  void UpdateDirection();
+
 };
 
 #endif

@@ -38,7 +38,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Snake const snake, std::vector<std::unique_ptr<Frog>>& frogs) {
+void Renderer::Render(Snake const snake, std::vector<std::unique_ptr<Frog>>  &frogs) {
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
